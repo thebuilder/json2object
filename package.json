@@ -1,0 +1,20 @@
+{
+  "name": "json2object",
+  "version": "1.0.0",
+  "description": "Convert .json files into an object",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "extend": "^2.0.0",
+    "glob": "^4.3.5",
+    "varname": "^1.0.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.1.0",
+    "should": "^4.6.3"
+  }
+}
