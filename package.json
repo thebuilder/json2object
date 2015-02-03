@@ -7,6 +7,7 @@
   "scripts": {
     "test": "mocha test.js"
   },
+  "keywords": ["node", "json", "sync"],
   "author": "Daniel Schmidt",
   "license": "MIT",
   "dependencies": {
