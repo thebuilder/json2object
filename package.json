@@ -1,6 +1,6 @@
 {
   "name": "json2object",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convert .json files into an object",
   "repository": "https://github.com/thebuilder/json2object",
   "main": "index.js",
