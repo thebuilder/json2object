@@ -11,6 +11,11 @@ describe('json2object', function() {
 			(a).should.be.instanceof(Array).and.have.length(4);
 		});
 
+		it("Should use glob pattern", function() {
+			var a = j2o.getArray('test/data', '*.json');
+			(a).should.be.instanceof(Array).and.have.length(1);
+		});
+
 		it("getArray should not fail with invalid directory", function() {
 			var a = j2o.getArray('test/data/invalid');
 			(a).should.be.instanceof(Array).and.have.length(0);
@@ -21,6 +26,11 @@ describe('json2object', function() {
 		it("Should getObjectArray", function() {
 			var o = j2o.getObjectArray('test/data');
 			(o).should.be.instanceof(Array).and.have.length(4);
+		});
+
+		it("Should use glob pattern", function() {
+			var o = j2o.getObjectArray('test/data', '*.json');
+			(o).should.be.instanceof(Array).and.have.length(1);
 		});
 
 		it("getObjectArray should not fail with invalid directory", function() {
@@ -37,11 +47,16 @@ describe('json2object', function() {
 			(o['subdir']).should.have.keys('deep', 'second', 'second2');
 		});
 
+		it("Should use glob pattern", function() {
+			var o = j2o.getObject('test/data', '*.json');
+			(o).should.have.keys('first').and.not.have.keys('subdir');
+		});
+
 		it("getObject should not fail with invalid directory", function() {
 			var o = j2o.getObject('test/data/invalid');
 			(o).should.be.instanceof(Object);
 		});
-	})
+	});
 
 	describe('merge', function() {
 		it("Should merge", function() {
@@ -50,9 +65,15 @@ describe('json2object', function() {
 			(o).should.have.keys('test');
 		});
 
+		it("Should use glob pattern", function() {
+			var o = j2o.merge('test/data', '*.json');
+			(o).should.have.keys('test');
+			(o).should.have.property('test', 'first');
+		});
+
 		it("merge should not fail with invalid directory", function() {
 			var o = j2o.getObject('test/data/invalid');
 			(o).should.be.instanceof(Object);
 		});
-	})
+	});
 });
