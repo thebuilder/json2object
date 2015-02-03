@@ -2,12 +2,13 @@
   "name": "json2object",
   "version": "1.0.0",
   "description": "Convert .json files into an object",
+  "repository": "https://github.com/thebuilder/json2object",
   "main": "index.js",
   "scripts": {
     "test": "mocha test.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Daniel Schmidt",
+  "license": "MIT",
   "dependencies": {
     "extend": "^2.0.0",
     "glob": "^4.3.5",

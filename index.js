@@ -7,14 +7,15 @@ var glob = require('glob');
 /**
  * Reads all the .json files in a directory, and returns an array containing files as objects.
  * @param dir {string} Path to root directory, to fetch json files from.
+ * @param pattern {string=} Glob to use for finding .json files. Default: '**\/*.json'
  * @param opts {object=} Globbing options. By default 'cwd' will be set to root directory.
  * @returns {Array}
  */
-exports.getArray = function(dir, opts) {
+exports.getArray = function(dir, pattern, opts) {
 	//Ensure valid directory
 	dir = validateDir(dir);
 	//Retrieve all the files
-	var files = globJsonFiles(dir, opts);
+	var files = globJsonFiles(dir, pattern, opts);
 
 	var data = [];
 	//Loop over all the files
@@ -29,15 +30,16 @@ exports.getArray = function(dir, opts) {
 /**
  * Reads all the .json files in a directory, and returns an array containing files as objects.
  * @param dir {string} Path to root directory, to fetch json files from.
- * @param opts {object} [{}] Globbing options. By default 'cwd' will be set to root directory.
+ * @param pattern {string=} Glob to use for finding .json files. Default: '**\/*.json'
+ * @param opts {object=} Globbing options. By default 'cwd' will be set to root directory.
  * @returns {Array}
  */
-exports.getObjectArray = function(dir, opts) {
+exports.getObjectArray = function(dir, pattern, opts) {
 	opts = opts || {};
 	//Ensure valid directory
 	dir = validateDir(dir);
 	//Retrieve all the files
-	var files = globJsonFiles(dir, opts);
+	var files = globJsonFiles(dir, pattern, opts);
 
 	var data = [];
 	//Loop over all the files
@@ -56,15 +58,16 @@ exports.getObjectArray = function(dir, opts) {
 /**
  * Reads all the json files in a directory, including subdirectories, and merges the data into an object with path and filename converted into object names.
  * @param dir {string} String directory to look up. Does not support globbing.
- * @param opts {object} [{}] Globbing options. By default 'cwd' will be set to root directory.
+ * @param pattern {string=} Glob to use for finding .json files. Default: '**\/*.json'
+ * @param opts {object=} Globbing options. By default 'cwd' will be set to root directory.
  * @return {{}} Returns a new object.
  */
-exports.getObject = function(dir, opts) {
+exports.getObject = function(dir, pattern, opts) {
 	var data = {};
 	//Ensure valid directory
 	dir = validateDir(dir);
 	//Retrieve all the files
-	var files = globJsonFiles(dir, opts);
+	var files = globJsonFiles(dir, pattern, opts);
 
 	//Filter out and parse all .json files
 	files.forEach(function(file) {
@@ -96,15 +99,16 @@ exports.getObject = function(dir, opts) {
  * Reads all the json files in a directory, including subdirectories, and merges the json data into a single object. This maintains the exact structure of the .json files.
  * This will overwrite duplicate property names.
  * @param dir {string} String directory to look up. Does not support globbing.
- * @param opts {object} [{}] Globbing options. By default 'cwd' will be set to root directory.
+ * @param pattern {string=} Glob to use for finding .json files. Default: '**\/*.json'
+ * @param opts {object=} Globbing options. By default 'cwd' will be set to root directory.
  * @return {object}
  */
-exports.merge = function(dir, opts) {
+exports.merge = function(dir, pattern, opts) {
 	var data = {};
 	//Ensure valid directory
 	dir = validateDir(dir);
 	//Retrieve all the files
-	var files = globJsonFiles(dir, opts);
+	var files = globJsonFiles(dir, pattern, opts);
 
 	//Filter out and parse all .json files
 	files.forEach(function(file) {
@@ -131,10 +135,11 @@ function validateDir(dir) {
 	return dir;
 }
 
-function globJsonFiles(dir, opts) {
+function globJsonFiles(dir, pattern, opts) {
 	opts = opts || {};
+	pattern = pattern || '**/*.json';
 	opts.cwd = opts.cwd || dir;
-	return glob.sync('**/*.json', opts);
+	return glob.sync(pattern, opts);
 }
 
 function readJson(filepath) {
