@@ -14,10 +14,10 @@ This will read all *.json* files in 'test/data', and return a flat array with th
 
 ## API
 
-###getArray
+### getArray
 Reads all the *.json* files in a directory, and returns an array containing the file data as objects.
 
-#####Example
+##### Example
 ```
 [ { test: 'first' },
   { test: 'third' },
@@ -25,12 +25,12 @@ Reads all the *.json* files in a directory, and returns an array containing the 
   { test: 'second 2' } ]
 ```
 
-###getObjectArray
+### getObjectArray
 Reads all the *.json* files in a directory, and returns an array with the file data parsed into an object containing: "name", "path" and "data".
 
 Use this if you need to know where the data came from.
 
-#####Example
+##### Example
 ```
 [ { name: 'first', path: './', data: { test: 'first' } },
   { name: 'third', path: 'subdir/deep/', data: { test: 'third' } },
@@ -38,10 +38,10 @@ Use this if you need to know where the data came from.
   { name: 'second2', path: 'subdir/', data: { test: 'second 2' } } ]
 ```
 
-###getObject
+### getObject
 Reads all the *.json* files in a directory, and returns an Object matching the tree structure. File names are converted into object keys, that can be used for lookup.
 
-#####Example
+##### Example
 ```
 { first: { test: 'first' },
   subdir: 
@@ -50,10 +50,10 @@ Reads all the *.json* files in a directory, and returns an Object matching the t
      second2: { test: 'second 2' } } }
 ```
 
-###merge
+### merge
 Reads all the *.json* files in a directory, and merges them into a single Object using *extend*.
 
-#####Example
+##### Example
 ```
 { test: 'second 2' }
 ```
