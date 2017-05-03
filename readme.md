@@ -1,4 +1,6 @@
 ## Information
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/thebuilder/json2object.svg)](https://greenkeeper.io/)
 Node tool to sync read local .json files. Very useful when generating static pages using Jade.
 
 ## Usage
